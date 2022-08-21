@@ -1,26 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import AgentsSmall from "./components/AgentsSmall";
+import List from "@mui/material/List";
+import axios from "axios";
+import { IAgent } from "./models";
+import Header from "./components/Header";
 
-function App() {
+const App = () => {
+  const [agents, setAgents] = useState([]);
+
+  const getAgents = async () => {
+    const response = await axios
+      .get<IAgent[]>(
+        `https://valorant-api.com/v1/agents?isPlayableCharacter=true`
+      )
+      .then((response) => response.data);
+    setAgents(response.data);
+  };
+
+  useEffect(() => {
+    getAgents();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header />
+      <List
+        sx={{
+          width: "100%",
+          maxWidth: "250px",
+          overflow: "auto",
+          maxHeight: "300px",
+        }}
+        disablePadding
+      >
+        {agents.map((agent) => (
+          <AgentsSmall key={agent} agent={agent} />
+        ))}
+      </List>
     </div>
   );
-}
+};
 
 export default App;
