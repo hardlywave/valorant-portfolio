@@ -14,7 +14,7 @@ const MapsPage = () => {
   const isMediumWindow = useMediaQuery({ query: `(max-width: 800px)` });
 
   const windowSize = () => (isSmallWindow ? 1 : isMediumWindow ? 2 : 3);
-  console.log(maps);
+
   return (
     <>
       {loading && <Loader loading={loading} />}
