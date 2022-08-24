@@ -10,8 +10,8 @@ const Header = () => {
   return (
     <AppBar
       position="static"
-      sx={{ backgroundColor: "black" }}
-      style={{
+      sx={{
+        backgroundColor: "black",
         position: "relative",
         zIndex: 10000,
         borderBottom: "1px solid grey",

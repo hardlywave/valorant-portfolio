@@ -2,24 +2,38 @@ import { IAgent } from "../models";
 import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
+import { useState } from "react";
 
 interface AgentProps {
   agent: IAgent;
 }
 
 const Agents = ({ agent }: AgentProps) => {
+  const [isHover, setIsHover] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
+  };
   return (
     <ImageListItem>
       <ListItemButton
         onClick={() => alert(agent.uuid)}
         sx={{
-          py: 0,
+          m: "7px",
+          p: 0,
           minHeight: 32,
           width: "100%",
           borderRadius: "7px",
           backgroundImage: `linear-gradient(to bottom, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]}, #${agent.backgroundGradientColors[2]}, #${agent.backgroundGradientColors[3]})`,
           justifyContent: "center",
+          transform: isHover ? "scale(1.02)" : "scale(1)",
+          zIndex: isHover ? 1 : "",
         }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <ImageListItem key={agent.uuid}>
           <img

@@ -17,3 +17,7 @@ export interface IAgent {
     displayIcon: string;
   };
 }
+
+export interface IMap {
+  [key: string]: any;
+}
