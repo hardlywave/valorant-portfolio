@@ -47,6 +47,7 @@ const Agents = ({ agent }: AgentProps) => {
             subtitle={agent.role.displayName}
             actionIcon={
               <img
+                alt={`${agent.role.displayName}`}
                 style={{
                   maxHeight: 30,
                   maxWidth: 30,
