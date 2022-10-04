@@ -19,11 +19,12 @@ const Header = () => {
   };
 
   const pages = [
-    { name: "Agents", link: "/agents" },
-    { name: "Maps", link: "/maps" },
+    { name: "Agents", link: "/agents", id: "0" },
+    { name: "Maps", link: "/maps", id: "1" },
     {
       name: "Weapons",
       link: "/weapons",
+      id: "2",
     },
   ];
 
@@ -109,7 +110,11 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem onClick={handleCloseNavMenu} sx={{ p: 0 }}>
+                <MenuItem
+                  key={page.id}
+                  onClick={handleCloseNavMenu}
+                  sx={{ p: 0 }}
+                >
                   <Button
                     sx={{
                       color: "black",
@@ -136,6 +141,7 @@ const Header = () => {
           >
             {pages.map((page) => (
               <Button
+                key={page.id}
                 sx={{
                   my: 2,
                   color: "white",
