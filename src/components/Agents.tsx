@@ -18,18 +18,23 @@ const Agents = ({ agent }: AgentProps) => {
     setIsHover(false);
   };
   return (
-    <ImageListItem>
+    <ImageListItem
+      sx={{
+        width: "100%",
+        height: "100%",
+        borderRadius: "7px",
+      }}
+    >
       <ListItemButton
         onClick={() => alert(agent.uuid)}
         sx={{
-          m: "7px",
-          p: 0,
+          p: "unset",
           minHeight: 32,
           width: "100%",
           borderRadius: "7px",
           backgroundImage: `linear-gradient(to bottom, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]}, #${agent.backgroundGradientColors[2]}, #${agent.backgroundGradientColors[3]})`,
           justifyContent: "center",
-          transform: isHover ? "scale(1.02)" : "scale(1)",
+          transform: isHover ? "scale(1)" : "scale(0.98)",
           zIndex: isHover ? 1 : "",
         }}
         onMouseEnter={handleMouseEnter}
@@ -49,6 +54,7 @@ const Agents = ({ agent }: AgentProps) => {
               bottom: 0,
               width: "100%",
               height: "100%",
+              borderRadius: "7px",
             }}
             src={`${agent.fullPortrait}?w=248&fit=crop&auto=format`}
             srcSet={`${agent.fullPortrait}?w=248&fit=crop&auto=format&dpr=2 2x`}
@@ -56,7 +62,7 @@ const Agents = ({ agent }: AgentProps) => {
             loading="lazy"
           />
           <ImageListItemBar
-            sx={{ fontWeight: "Bold" }}
+            sx={{ fontWeight: "Bold", borderRadius: "7px" }}
             title={agent.displayName}
             subtitle={agent.role.displayName}
             actionIcon={

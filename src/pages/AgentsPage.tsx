@@ -18,7 +18,11 @@ const AgentsPage = () => {
   return (
     <>
       {loading && <Loader loading={loading} />}
-      <ImageList cols={windowSize()} style={{ overflowY: "auto" }}>
+      <ImageList
+        cols={windowSize()}
+        style={{ overflowY: "auto", padding: "0 15px" }}
+        gap={15}
+      >
         {agents
           .sort((agent1, agent2) =>
             agent1.role.displayName === agent2.role.displayName ? 1 : -1

@@ -5,15 +5,39 @@ import Container from "@mui/material/Container";
 import SvgIcon from "@mui/material/SvgIcon";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import MenuIcon from "@mui/icons-material/Menu";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import { useState, MouseEvent } from "react";
 
 const Header = () => {
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
+  const pages = [
+    { name: "Agents", link: "/agents" },
+    { name: "Maps", link: "/maps" },
+    {
+      name: "Weapons",
+      link: "/weapons",
+    },
+  ];
+
+  const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
   return (
     <AppBar
       position="static"
       sx={{
         backgroundColor: "black",
         position: "relative",
-        zIndex: 10000,
+        zIndex: 1,
         borderBottom: "1px solid grey",
       }}
     >
@@ -51,34 +75,78 @@ const Header = () => {
             </SvgIcon>
             Valorant
           </Typography>
+
+          <Box
+            sx={{
+              flexGrow: 1,
+              flexDirection: "row-reverse",
+              display: {
+                xs: "flex",
+                md: "none",
+              },
+            }}
+          >
+            <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
+              keepMounted
+              transformOrigin={{ horizontal: "right", vertical: "top" }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{
+                display: { xs: "block", md: "none" },
+              }}
+            >
+              {pages.map((page) => (
+                <MenuItem onClick={handleCloseNavMenu} sx={{ p: 0 }}>
+                  <Button
+                    sx={{
+                      color: "black",
+                      fontFamily: "VALORANT",
+                      width: "100%",
+                      minWidth: 100,
+                    }}
+                    href={page.link}
+                  >
+                    {page.name}
+                  </Button>
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
           <Box
             sx={{
               flexGrow: 0,
-              display: "flex",
+              display: {
+                xs: "none",
+                md: "flex",
+              },
             }}
           >
-            <Button
-              sx={{
-                my: 2,
-                color: "white",
-                display: "block",
-                fontFamily: "VALORANT",
-              }}
-              href="/agents"
-            >
-              Agents
-            </Button>
-            <Button
-              sx={{
-                my: 2,
-                color: "white",
-                display: "block",
-                fontFamily: "VALORANT",
-              }}
-              href="/maps"
-            >
-              Maps
-            </Button>
+            {pages.map((page) => (
+              <Button
+                sx={{
+                  my: 2,
+                  color: "white",
+                  display: "block",
+                  fontFamily: "VALORANT",
+                }}
+                href={page.link}
+              >
+                {page.name}
+              </Button>
+            ))}
           </Box>
         </Toolbar>
       </Container>

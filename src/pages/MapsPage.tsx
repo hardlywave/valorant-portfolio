@@ -18,7 +18,11 @@ const MapsPage = () => {
   return (
     <>
       {loading && <Loader loading={loading} />}
-      <ImageList cols={windowSize()} style={{ overflowY: "auto" }}>
+      <ImageList
+        cols={windowSize()}
+        style={{ overflowY: "auto", padding: "0 15px" }}
+        gap={15}
+      >
         {maps.map((map, index) => (
           <Maps key={index} map={map} />
         ))}

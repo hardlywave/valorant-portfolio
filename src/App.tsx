@@ -5,6 +5,7 @@ import MainPage from "./pages/MainPage";
 import { Routes, Route } from "react-router-dom";
 import ScrollUpButton from "./components/ScrollUpButton";
 import MapsPage from "./pages/MapsPage";
+import WeaponsPage from "./pages/WeaponsPage";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Route path="/" element={<MainPage />} />
         <Route path="/agents" element={<AgentsPage />} />
         <Route path="/maps" element={<MapsPage />} />
+        <Route path="/weapons" element={<WeaponsPage />} />
       </Routes>
       <ScrollUpButton />
     </>

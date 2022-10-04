@@ -19,5 +19,16 @@ export interface IAgent {
 }
 
 export interface IMap {
-  [key: string]: any;
+  uuid: string;
+  displayName: string;
+  splash: string;
+}
+
+export interface IWeapon {
+  uuid: string;
+  displayName: string;
+  category: string;
+  defaultSkinUuid: string;
+  displayIcon: string;
+  killStreamIcon: string;
 }

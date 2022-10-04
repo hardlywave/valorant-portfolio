@@ -23,13 +23,11 @@ const Agents = ({ map }: AgentProps) => {
       <ListItemButton
         onClick={() => alert(map.uuid)}
         sx={{
-          p: "7px",
-          minHeight: 32,
+          p: 0,
           width: "100%",
           borderRadius: "7px",
           justifyContent: "center",
-          backgroundImage: `url(${map.splash}) cover`,
-          transform: isHover ? "scale(1.02)" : "scale(1)",
+          transform: isHover ? "scale(1)" : "scale(0.98)",
           zIndex: isHover ? 1 : "",
         }}
         onMouseEnter={handleMouseEnter}
@@ -38,7 +36,6 @@ const Agents = ({ map }: AgentProps) => {
         <ImageListItem key={map.uuid}>
           <img
             src={`${map.splash}?w=161&fit=crop&auto=format`}
-            srcSet={`${map.splash}?w=161&fit=crop&auto=format&dpr=2 2x`}
             alt={map.displayName}
             loading="lazy"
             style={{ borderRadius: "7px" }}
@@ -46,8 +43,8 @@ const Agents = ({ map }: AgentProps) => {
           <ImageListItemBar
             sx={{
               fontWeight: "Bold",
-              borderEndEndRadius: "7px",
-              borderEndStartRadius: "7px",
+              borderRadius: "7px",
+              border: "1px transparent",
             }}
             title={map.displayName}
           />
