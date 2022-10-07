@@ -52,6 +52,7 @@
   },
   "devDependencies": {
     "@mui/icons-material": "^5.8.4",
-    "prettier": "2.7.1"
+    "eslint": "^8.22.0",
+    "prettier": "^2.7.1"
   }
 }
