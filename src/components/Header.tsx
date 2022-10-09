@@ -53,7 +53,7 @@ const Header = () => {
               mr: 2,
               ml: 1,
               display: { md: "flex" },
-              fontFamily: "VALORANT",
+              fontFamily: "Roboto",
               fontWeight: 700,
               letterSpacing: ".3rem",
               color: "inherit",
@@ -118,7 +118,7 @@ const Header = () => {
                   <Button
                     sx={{
                       color: "black",
-                      fontFamily: "VALORANT",
+                      fontFamily: "Roboto",
                       width: "100%",
                       minWidth: 100,
                     }}
@@ -146,7 +146,7 @@ const Header = () => {
                   my: 2,
                   color: "white",
                   display: "block",
-                  fontFamily: "VALORANT",
+                  fontFamily: "Roboto",
                 }}
                 href={page.link}
               >

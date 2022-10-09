@@ -8,6 +8,8 @@ interface WeaponsProps {
 }
 
 const Weapons = ({ weapon }: WeaponsProps) => {
+  const RandomFunction = () => Math.floor(Math.random() * 5);
+  let weaponDisplayIcon;
   return (
     <ImageListItem
       sx={{
@@ -34,7 +36,11 @@ const Weapons = ({ weapon }: WeaponsProps) => {
         <ImageListItem>
           <img
             style={{ maxHeight: 150 }}
-            src={`${weapon.displayIcon}?w=248&fit=crop&auto=format`}
+            src={`${
+              weapon.skins[(weaponDisplayIcon = RandomFunction())].displayIcon
+                ? weapon.skins[weaponDisplayIcon].displayIcon
+                : weapon.displayIcon
+            }?w=248&fit=crop&auto=format`}
             alt={weapon.displayName}
             loading="lazy"
           />

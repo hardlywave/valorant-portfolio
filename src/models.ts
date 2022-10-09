@@ -31,4 +31,9 @@ export interface IWeapon {
   defaultSkinUuid: string;
   displayIcon: string;
   killStreamIcon: string;
+  skins: [
+    {
+      displayIcon: string;
+    }
+  ];
 }
