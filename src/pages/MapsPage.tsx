@@ -2,8 +2,8 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 
 import useMaps from "../requests/getMaps";
-import Maps from "../components/Maps";
-import Loader from "../components/Loader";
+import Maps from "../components/tsx/Maps";
+import Loader from "../components/tsx/Loader";
 
 import ImageList from "@mui/material/ImageList";
 

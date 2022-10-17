@@ -1,4 +1,4 @@
-import { IAgent } from "../models";
+import { IAgent } from "../../models";
 import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
@@ -34,13 +34,20 @@ const Agents = ({ agent }: AgentProps) => {
           borderRadius: "7px",
           backgroundImage: `linear-gradient(to bottom, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]}, #${agent.backgroundGradientColors[2]}, #${agent.backgroundGradientColors[3]})`,
           justifyContent: "center",
-          transform: isHover ? "scale(1)" : "scale(0.98)",
+          transform: isHover ? "scale(0.98)" : "scale(0.96)",
+          boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
           zIndex: isHover ? 1 : "",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <ImageListItem key={agent.uuid}>
+        <ImageListItem
+          key={agent.uuid}
+          sx={{
+            borderRadius: "7px",
+            boxShadow: "inset 1px 3px 30px 20px rgb(30 30 30 / 20%)",
+          }}
+        >
           <img
             style={{ opacity: 0.6 }}
             src={`${agent.background}?w=248&fit=crop&auto=format`}

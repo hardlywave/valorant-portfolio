@@ -1,0 +1,21 @@
+:root {
+  --ligthgray-color: #868686;
+  --shadow-color: rgba(30, 30, 30, 0.38);
+  --gray-color: #1E1E1EB8;
+}
+
+.sortAgentsButton {
+  color: var(--ligthgray-color) !important;
+  border: 2px solid var(--ligthgray-color) !important;
+  border-radius: 10px !important;
+  transition-duration: 0.2s !important;
+  box-shadow: -1px 1px 1px var(--shadow-color)
+}
+
+.sortAgentsButton:hover {
+  transform: scale(1) !important;
+  color: var(--gray-color) !important;
+  translate: 1px -1px;
+  box-shadow: -2px 2px 1px var(--ligthgray-color);
+}
+

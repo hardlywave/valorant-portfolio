@@ -1,4 +1,4 @@
-import { IWeapon } from "../models";
+import { IWeapon } from "../../models";
 import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
@@ -10,6 +10,7 @@ interface WeaponsProps {
 const Weapons = ({ weapon }: WeaponsProps) => {
   const RandomFunction = () => Math.floor(Math.random() * 5);
   let weaponDisplayIcon;
+
   return (
     <ImageListItem
       sx={{
@@ -24,10 +25,11 @@ const Weapons = ({ weapon }: WeaponsProps) => {
           width: "auto",
           borderRadius: "7px",
           backgroundColor: "lightgrey",
-          transform: "scale(0.98)",
+          transform: "scale(0.96)",
           justifyContent: "center",
+          boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
           "&:hover": {
-            transform: "scale(1)",
+            transform: "scale(0.98)",
             backgroundColor: "lightgrey",
             zIndex: 1,
           },

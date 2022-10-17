@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "./components/Header";
+import Header from "./components/tsx/Header";
 import AgentsPage from "./pages/AgentsPage";
 import MainPage from "./pages/MainPage";
 import { Routes, Route } from "react-router-dom";
-import ScrollUpButton from "./components/ScrollUpButton";
+import ScrollUpButton from "./components/tsx/ScrollUpButton";
 import MapsPage from "./pages/MapsPage";
 import WeaponsPage from "./pages/WeaponsPage";
 

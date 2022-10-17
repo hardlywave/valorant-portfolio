@@ -58,6 +58,7 @@ const Header = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              "&:hover": { transform: "scale(1.05) !important" },
             }}
           >
             <SvgIcon viewBox="0 0 35 35" sx={{ mr: 1 }}>
@@ -89,11 +90,19 @@ const Header = () => {
           >
             <IconButton
               size="large"
-              aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
+              sx={{
+                color: "#a8a8a8",
+                p: "1px",
+                "&:hover": {
+                  transform: "scale(1.02) !important",
+                  border: "2px solid white",
+                  borderRadius: "5px",
+                  color: "white",
+                },
+              }}
             >
               <MenuIcon />
             </IconButton>
@@ -110,14 +119,10 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem
-                  key={page.id}
-                  onClick={handleCloseNavMenu}
-                  sx={{ p: 0 }}
-                >
+                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
                   <Button
                     sx={{
-                      color: "black",
+                      color: "#868686",
                       fontFamily: "Roboto",
                       width: "100%",
                       minWidth: 100,
@@ -147,6 +152,7 @@ const Header = () => {
                   color: "white",
                   display: "block",
                   fontFamily: "Roboto",
+                  "&:hover": { transform: "scale(1.1) !important" },
                 }}
                 href={page.link}
               >
