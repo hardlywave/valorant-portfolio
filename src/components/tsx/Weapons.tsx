@@ -25,7 +25,7 @@ const Weapons = ({ weapon }: WeaponsProps) => {
       }}
     >
       <ListItemButton
-        onClick={() => alert(weapon.uuid)}
+        onClick={() => alert("Sorry, page is not ready")}
         sx={{
           height: 180,
           width: "auto",
@@ -47,7 +47,6 @@ const Weapons = ({ weapon }: WeaponsProps) => {
                 : weapon.displayIcon
             }?w=248&fit=crop&auto=format`}
             alt={weapon.displayName}
-            loading="lazy"
           />
         </ImageListItem>
         <ImageListItemBar

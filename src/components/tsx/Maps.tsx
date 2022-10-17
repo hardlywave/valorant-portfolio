@@ -24,7 +24,7 @@ const Agents = ({ map }: AgentProps) => {
       }}
     >
       <ListItemButton
-        onClick={() => alert(map.uuid)}
+        onClick={() => alert("Sorry, page is not ready")}
         sx={{
           p: 0,
           width: "100%",
@@ -43,7 +43,6 @@ const Agents = ({ map }: AgentProps) => {
             src={`${map.splash}?w=161&fit=crop&auto=format`}
             alt={map.displayName}
             style={{ borderRadius: "7px" }}
-            loading="lazy"
           />
           <ImageListItemBar
             sx={{

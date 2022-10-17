@@ -29,7 +29,7 @@ const Agents = ({ agent }: AgentProps) => {
       }}
     >
       <ListItemButton
-        onClick={() => alert(agent.uuid)}
+        onClick={() => alert("Sorry, page is not ready")}
         sx={{
           p: "unset",
           minHeight: 32,
@@ -53,7 +53,6 @@ const Agents = ({ agent }: AgentProps) => {
             src={`${agent.background}?w=248&fit=crop&auto=format`}
             srcSet={`${agent.background}?w=248&fit=crop&auto=format&dpr=2 2x`}
             alt={agent.displayName}
-            loading="lazy"
           />
           <img
             style={{
