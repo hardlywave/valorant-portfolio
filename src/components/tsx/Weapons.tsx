@@ -16,6 +16,12 @@ const Weapons = ({ weapon }: WeaponsProps) => {
       sx={{
         height: 180,
         borderRadius: "7px",
+        boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
+        transform: "scale(0.96)",
+        "&:hover": {
+          transform: "scale(0.98)",
+          zIndex: 1,
+        },
       }}
     >
       <ListItemButton
@@ -25,13 +31,10 @@ const Weapons = ({ weapon }: WeaponsProps) => {
           width: "auto",
           borderRadius: "7px",
           backgroundColor: "lightgrey",
-          transform: "scale(0.96)",
           justifyContent: "center",
-          boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
+          boxShadow: "inset 1px 3px 30px 10px rgb(30 30 30 / 45%)",
           "&:hover": {
-            transform: "scale(0.98)",
             backgroundColor: "lightgrey",
-            zIndex: 1,
           },
         }}
       >

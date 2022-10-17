@@ -9,21 +9,18 @@ interface AgentProps {
 }
 
 const Agents = ({ map }: AgentProps) => {
-  const [isHover, setIsHover] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHover(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHover(false);
-  };
-
   return (
     <ImageListItem
       sx={{
         width: "100%",
         height: "100%",
         borderRadius: "7px",
+        transform: "scale(0.96)",
+        boxShadow: "-2px 1px 10px 6px rgb(30 30 30 / 40%)",
+        "&:hover": {
+          transform: "scale(0.98)",
+          zIndex: 1,
+        },
       }}
     >
       <ListItemButton
@@ -33,18 +30,13 @@ const Agents = ({ map }: AgentProps) => {
           width: "100%",
           borderRadius: "7px",
           justifyContent: "center",
-          transform: isHover ? "scale(0.98)" : "scale(0.96)",
-          boxShadow: "-2px 1px 10px 6px rgb(30 30 30 / 40%)",
-          zIndex: isHover ? 1 : "",
+          boxShadow: "inset 1px 3px 30px 10px rgb(30 30 30 / 45%)",
         }}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
       >
         <ImageListItem
           key={map.uuid}
           sx={{
             borderRadius: "7px",
-            boxShadow: "inset 1px 3px 30px 20px rgb(30 30 30 / 20%)",
           }}
         >
           <img

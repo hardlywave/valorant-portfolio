@@ -23,6 +23,9 @@ const Agents = ({ agent }: AgentProps) => {
         width: "100%",
         height: "100%",
         borderRadius: "7px",
+        transform: isHover ? "scale(0.98)" : "scale(0.96)",
+        boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
+        zIndex: isHover ? 1 : "",
       }}
     >
       <ListItemButton
@@ -34,9 +37,7 @@ const Agents = ({ agent }: AgentProps) => {
           borderRadius: "7px",
           backgroundImage: `linear-gradient(to bottom, #${agent.backgroundGradientColors[0]}, #${agent.backgroundGradientColors[1]}, #${agent.backgroundGradientColors[2]}, #${agent.backgroundGradientColors[3]})`,
           justifyContent: "center",
-          transform: isHover ? "scale(0.98)" : "scale(0.96)",
-          boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
-          zIndex: isHover ? 1 : "",
+          boxShadow: "inset 1px 3px 30px 25px rgb(30 30 30 / 50%)",
         }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -45,7 +46,6 @@ const Agents = ({ agent }: AgentProps) => {
           key={agent.uuid}
           sx={{
             borderRadius: "7px",
-            boxShadow: "inset 1px 3px 30px 20px rgb(30 30 30 / 20%)",
           }}
         >
           <img
