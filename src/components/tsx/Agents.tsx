@@ -42,12 +42,7 @@ const Agents = ({ agent }: AgentProps) => {
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
-        <ImageListItem
-          key={agent.uuid}
-          sx={{
-            borderRadius: "7px",
-          }}
-        >
+        <ImageListItem key={agent.uuid} sx={{ borderRadius: "7px" }}>
           <img
             style={{ opacity: 0.6 }}
             src={`${agent.background}?w=248&fit=crop&auto=format`}

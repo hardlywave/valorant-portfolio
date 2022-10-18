@@ -42,7 +42,9 @@ const AgentsPage = () => {
   }
 
   function sortByName() {
-    return [...agents].sort((el1) => (el1.displayName ? 1 : -1));
+    return [...agents].sort((el1, el2) =>
+      el1.displayName.localeCompare(el2.displayName)
+    );
   }
 
   return (
