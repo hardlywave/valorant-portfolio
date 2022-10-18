@@ -11,7 +11,8 @@
   //display: none; /* Hidden by default */
   text-align: -webkit-center;
   position: fixed; /* Stay in place */
-  z-index: 100000000; /* Sit on top */
+  z-index: 10; /* Sit on top */
+  display: flex;
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -20,15 +21,23 @@
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4);
   overflow-y: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+  }
 }
 
 .modal-content {
   display: flex;
+  overflow: scroll;
   position: relative;
-  top: 10%;
   width: 90%;
-  height: 60%;
-  max-height: 80%;
+  max-height: 500px;
+  height: 90%;
   background-color: white;
 }
 
@@ -46,7 +55,7 @@
 
 .content-image-portrait {
   position: absolute;
-  height: 80%;
+  height: 90%;
 }
 
 .content-image {
@@ -54,13 +63,15 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  overflow: hidden;
   align-items: center
 }
 
 .agent-info-box {
   display: flex;
   flex-direction: column;
-  align-items: flex-start
+  align-items: flex-start;
+  margin: 8px;
 }
 
 .modal-container-info {
@@ -69,7 +80,6 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 10px;
 }
 
 .agent-info-dev-name {
@@ -78,12 +88,11 @@
 
 .abilities-list {
   position: relative;
-  max-height: 60%;
-  margin-top: 15px;
+  margin: 8px;
+  padding: 5px;
   overflow: scroll;
   border: 1px solid black;
   border-radius: 10px;
-  padding: 5px;
   flex-wrap: nowrap;
 }
 
@@ -111,7 +120,6 @@
 }
 
 .abilities-description, .agent-info-description {
-  font-style: italic;
   font-size: 15px;
 }
 

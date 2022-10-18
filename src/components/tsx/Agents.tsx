@@ -36,7 +36,6 @@ const Agents = ({ agent }: AgentProps) => {
         }}
       >
         <ListItemButton
-          // onClick={() => alert("Sorry, page is not ready")}
           onClick={() => handlerOnClickEvent()}
           sx={{
             p: "unset",
