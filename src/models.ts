@@ -2,6 +2,7 @@ export interface IAgent {
   uuid: string;
   displayName: string;
   description: string;
+  developerName: string;
   displayIcon: string;
   displayIconSmall: string;
   bustPortrait: string;
@@ -10,12 +11,20 @@ export interface IAgent {
   killfeedPortrait: string;
   background: string;
   backgroundGradientColors: [string, string, string, string];
+  abilities: [IAbilities];
   role: {
     uuid: string;
     displayName: string;
     description: string;
     displayIcon: string;
   };
+}
+
+export interface IAbilities {
+  description: string;
+  displayIcon: string;
+  displayName: string;
+  slot: string;
 }
 
 export interface IMap {

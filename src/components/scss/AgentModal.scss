@@ -1,0 +1,129 @@
+:root {
+  --subtext-color: rgba(84, 84, 84, 0.88);
+}
+
+* {
+  text-align: justify;
+  font-family: Roboto, serif;
+}
+
+.modal-container {
+  //display: none; /* Hidden by default */
+  text-align: -webkit-center;
+  position: fixed; /* Stay in place */
+  z-index: 100000000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  overflow-y: hidden;
+}
+
+.modal-content {
+  display: flex;
+  position: relative;
+  top: 10%;
+  width: 90%;
+  height: 60%;
+  max-height: 80%;
+  background-color: white;
+}
+
+.modal-content-image {
+  position: relative;
+  display: flex;
+}
+
+.modal-content-image-container {
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.content-image-portrait {
+  position: absolute;
+  height: 80%;
+  left: -25px;
+}
+
+.content-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.agent-info-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start
+}
+
+.modal-container-info {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+}
+
+.agent-info-dev-name {
+  margin-top: 0;
+}
+
+.abilities-list {
+  position: relative;
+  max-height: 60%;
+  margin-top: 15px;
+  overflow: scroll;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 5px;
+  flex-wrap: nowrap;
+}
+
+.abilities-header {
+  display: flex;
+  margin: 10px 0;
+  gap: 10px;
+  align-items: center
+}
+
+.abilities-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+
+.abilities-header-name {
+  margin: 0;
+  text-align: justify;
+}
+
+.abilities-header-slot {
+  margin: 0;
+  text-align: justify;
+}
+
+.abilities-description, .agent-info-description {
+  font-style: italic;
+  font-size: 15px;
+}
+
+.agent-info-dev-name, .abilities-header-slot {
+  color: var(--subtext-color);
+  font-size: 14px;
+}
+
+.agent-info-name {
+  font-weight: bold;
+  font-size: 25px;
+  margin: 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
