@@ -47,14 +47,14 @@
 .content-image-portrait {
   position: absolute;
   height: 80%;
-  left: -25px;
 }
 
 .content-image {
   position: relative;
   width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  align-items: center
 }
 
 .agent-info-box {
