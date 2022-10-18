@@ -13,6 +13,7 @@ import { useState, MouseEvent } from "react";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const [isHover, setIsHover] = useState(false);
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -30,6 +31,13 @@ const Header = () => {
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHover(true);
+  };
+  const handleMouseLeave = () => {
+    setIsHover(false);
   };
 
   return (
@@ -56,10 +64,16 @@ const Header = () => {
               fontFamily: "Roboto",
               fontWeight: 700,
               letterSpacing: ".3rem",
-              color: "inherit",
+              color: "#a4a4a4",
               textDecoration: "none",
-              "&:hover": { transform: "scale(1.05) !important" },
+              "&:hover": {
+                transform: "scale(1.05) !important",
+                borderBottom: "1px solid white",
+                color: "white",
+              },
             }}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <SvgIcon viewBox="0 0 35 35" sx={{ mr: 1 }}>
               <svg
@@ -71,7 +85,7 @@ const Header = () => {
               >
                 <path
                   d="M99.25 48.66V10.28c0-.59-.75-.86-1.12-.39l-41.92 52.4a.627.627 0 00.49 1.02h30.29c.82 0 1.59-.37 2.1-1.01l9.57-11.96c.38-.48.59-1.07.59-1.68zM1.17 50.34L32.66 89.7c.51.64 1.28 1.01 2.1 1.01h30.29c.53 0 .82-.61.49-1.02L1.7 9.89c-.37-.46-1.12-.2-1.12.39v38.38c0 .61.21 1.2.59 1.68z"
-                  fill="#fff"
+                  fill={isHover ? "white" : "#a4a4a4"}
                 ></path>
               </svg>
             </SvgIcon>
@@ -94,7 +108,7 @@ const Header = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{
-                color: "#a8a8a8",
+                color: "#a4a4a4",
                 p: "1px",
                 "&:hover": {
                   transform: "scale(1.02) !important",
@@ -119,13 +133,22 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page.id} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page.id}
+                  onClick={handleCloseNavMenu}
+                  sx={{ p: 0 }}
+                >
                   <Button
                     sx={{
                       color: "#868686",
                       fontFamily: "Roboto",
                       width: "100%",
                       minWidth: 100,
+                      transitionDuration: 0.2,
+                      "&:hover": {
+                        color: "#1E1E1EB8",
+                        textDecoration: "underline",
+                      },
                     }}
                     href={page.link}
                   >
@@ -149,10 +172,15 @@ const Header = () => {
                 key={page.id}
                 sx={{
                   my: 2,
-                  color: "white",
+                  color: "#a4a4a4",
                   display: "block",
                   fontFamily: "Roboto",
-                  "&:hover": { transform: "scale(1.1) !important" },
+                  transitionDuration: 0.2,
+                  "&:hover": {
+                    transform: "scale(1.1) !important",
+                    color: "white",
+                    textDecoration: "underline",
+                  },
                 }}
                 href={page.link}
               >
