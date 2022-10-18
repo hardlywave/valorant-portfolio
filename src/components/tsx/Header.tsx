@@ -175,6 +175,7 @@ const Header = () => {
                   color: "#a4a4a4",
                   display: "block",
                   fontFamily: "Roboto",
+                  padding: "5px",
                   transitionDuration: 0.2,
                   "&:hover": {
                     transform: "scale(1.1) !important",
