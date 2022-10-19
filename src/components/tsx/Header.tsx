@@ -174,6 +174,7 @@ const Header = () => {
                   my: 2,
                   color: "#a4a4a4",
                   display: "block",
+                  textAlignLast: "center",
                   fontFamily: "Roboto",
                   padding: "5px",
                   transitionDuration: 0.2,
