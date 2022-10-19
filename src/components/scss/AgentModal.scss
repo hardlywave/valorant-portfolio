@@ -118,6 +118,11 @@
   border: 1px solid black;
   border-radius: 10px;
   flex-wrap: nowrap;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
