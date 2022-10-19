@@ -1,5 +1,6 @@
 :root {
   --subtext-color: rgba(84, 84, 84, 0.88);
+  --theme-label-tertiary: #a8b3cf;
 }
 
 * {
@@ -23,6 +24,11 @@
   align-items: center;
   justify-content: center;
   -ms-overflow-style: none; /* IE and Edge */
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: transparent;
+  }
+
   &::-webkit-scrollbar-thumb {
     border-radius: 4px;
     background: var(--theme-label-tertiary);
