@@ -23,7 +23,14 @@
   align-items: center;
   justify-content: center;
   -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none;
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--theme-label-tertiary);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
 }
 
 @media (max-width: 768px) {
@@ -106,8 +113,13 @@
   border-radius: 10px;
   flex-wrap: nowrap;
 
-  &::-webkit-scrollbar {
-    width: 4px;
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: var(--theme-label-tertiary);
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
   }
 }
 
