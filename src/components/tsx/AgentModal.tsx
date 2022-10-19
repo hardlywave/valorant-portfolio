@@ -65,17 +65,17 @@ const AgentModal = ({ agent, setClose }: AgentProps) => {
                       </h4>
                       <span className="abilities-header-slot">{el.slot}</span>
                     </div>
-                    <img
-                      className="abilities-header-logo"
-                      alt={`${el.displayName}`}
-                      style={{
-                        maxHeight: 30,
-                        maxWidth: 30,
-                        backgroundColor: "black",
-                        borderRadius: "50%",
-                      }}
-                      srcSet={el.displayIcon}
-                    />
+                    {el.displayIcon ? (
+                      <img
+                        className="abilities-header-logo"
+                        alt={`${el.displayName}`}
+                        srcSet={el.displayIcon}
+                      />
+                    ) : (
+                      <label className="abilities-header-logo-label">
+                        <span>Img error</span>
+                      </label>
+                    )}
                   </div>
                   <span className="abilities-description">
                     {el.description}

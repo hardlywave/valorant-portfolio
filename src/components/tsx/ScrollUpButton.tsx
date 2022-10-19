@@ -35,8 +35,10 @@ const ScrollUpButton = () => {
       style={{
         display: visible ? "inline" : "none",
         position: "fixed",
-        zIndex: 1000,
+        zIndex: 5,
         right: 20,
+        padding: 0,
+        opacity: 0.7,
         bottom: 20,
       }}
     >

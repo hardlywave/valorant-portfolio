@@ -198,3 +198,22 @@
   flex-direction: row-reverse;
 }
 
+.abilities-header-logo {
+  height: 30px;
+  width: 30px;
+  background-color: black;
+  border-radius: 50%;
+}
+
+.abilities-header-logo-label {
+  font-weight: bold;
+  color: var(--subtext-color);
+  padding: 2px;
+  font-size: 10px;
+  height: 30px;
+  width: 30px;
+  text-align: -webkit-center;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
