@@ -190,3 +190,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+.close-icon-box {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+
