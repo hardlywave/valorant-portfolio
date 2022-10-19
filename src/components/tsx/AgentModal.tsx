@@ -86,7 +86,15 @@ const AgentModal = ({ agent, setClose }: AgentProps) => {
           </div>
           <div className="close-icon-box">
             <IconButton
-              sx={{ position: "fixed" }}
+              sx={{
+                position: "fixed",
+                padding: 0,
+                margin: "10px",
+                "&:hover": {
+                  backgroundColor: "rgb(0 0 0 / 15%)",
+                  transform: "scale(1.05)",
+                },
+              }}
               onClick={() => handlerCloseButton()}
             >
               <svg
