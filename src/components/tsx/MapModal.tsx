@@ -37,11 +37,15 @@ const MapModal = ({ map, setClose }: MapProps) => {
               </span>
             </div>
             <div className="modal-info-image-box">
-              <img
-                className="modal-info-image-map"
-                alt={`${map.displayName}`}
-                srcSet={map.displayIcon}
-              />
+              {map.displayIcon ? (
+                <img
+                  className="modal-info-image-map"
+                  alt={`${map.displayName}`}
+                  srcSet={map.displayIcon}
+                />
+              ) : (
+                ""
+              )}
             </div>
           </div>
           <div className="close-icon-box">
