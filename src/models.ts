@@ -30,7 +30,10 @@ export interface IAbilities {
 export interface IMap {
   uuid: string;
   displayName: string;
+  displayIcon: string;
   splash: string;
+  coordinates: string;
+  listViewIcon: string;
 }
 
 export interface IWeapon {
