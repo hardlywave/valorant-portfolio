@@ -67,7 +67,6 @@ const Agents = ({ agent }: AgentProps) => {
               src={`${agent.fullPortrait}?w=248&fit=crop&auto=format`}
               srcSet={`${agent.fullPortrait}?w=248&fit=crop&auto=format&dpr=2 2x`}
               alt={agent.displayName}
-              loading="lazy"
             />
             <ImageListItemBar
               sx={{ fontWeight: "Bold", borderRadius: "7px" }}

@@ -22,7 +22,7 @@ const Maps = ({ map }: MapsProps) => {
           height: "100%",
           borderRadius: "7px",
           transform: "scale(0.96)",
-          boxShadow: "-2px 1px 10px 6px rgb(30 30 30 / 40%)",
+          boxShadow: "-1px 1px 10px 6px rgb(30 30 30 / 27%)",
           "&:hover": {
             transform: "scale(0.98)",
             zIndex: 1,
@@ -46,9 +46,9 @@ const Maps = ({ map }: MapsProps) => {
             }}
           >
             <img
-              src={`${map.splash}?w=161&fit=crop&auto=format`}
+              src={`${map.listViewIcon}?w=161&fit=crop&auto=format`}
               alt={map.displayName}
-              style={{ borderRadius: "7px" }}
+              style={{ borderRadius: "7px", width: "100%" }}
             />
             <ImageListItemBar
               sx={{

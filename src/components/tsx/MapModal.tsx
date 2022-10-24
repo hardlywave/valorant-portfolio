@@ -27,7 +27,7 @@ const MapModal = ({ map, setClose }: MapProps) => {
                 className="modal-info-name"
                 style={{
                   backgroundImage: `url(${map.splash})`,
-                  backgroundPosition: "center",
+                  backgroundPosition: "left",
                 }}
               >
                 {map.displayName}
