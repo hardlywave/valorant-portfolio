@@ -4,7 +4,7 @@ import "../components/scss/AgentsPage.scss";
 
 import useAgents from "../requests/getAgents";
 import Agents from "../components/tsx/Agents";
-import Loader from "../components/tsx/Loader";
+import Loader from "../components/tsx/mainComponents/Loader";
 
 import ImageList from "@mui/material/ImageList";
 import Button from "@mui/material/Button";

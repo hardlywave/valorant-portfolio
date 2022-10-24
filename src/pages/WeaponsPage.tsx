@@ -2,7 +2,7 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import useWeapon from "../requests/getWeapon";
 import Weapons from "../components/tsx/Weapons";
-import Loader from "../components/tsx/Loader";
+import Loader from "../components/tsx/mainComponents/Loader";
 
 import ImageList from "@mui/material/ImageList";
 

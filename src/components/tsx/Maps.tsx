@@ -3,7 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import React, { useState } from "react";
-import MapModal from "./MapModal";
+import MapModal from "./modalComponents/MapModal";
 
 interface MapsProps {
   map: IMap;
@@ -46,7 +46,7 @@ const Maps = ({ map }: MapsProps) => {
             }}
           >
             <img
-              src={`${map.listViewIcon}?w=161&fit=crop&auto=format`}
+              src={`${map.splash}?w=161&fit=crop&auto=format`}
               alt={map.displayName}
               style={{ borderRadius: "7px", width: "100%" }}
             />

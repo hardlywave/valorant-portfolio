@@ -3,7 +3,7 @@ import Header from "./components/tsx/Header";
 import AgentsPage from "./pages/AgentsPage";
 import MainPage from "./pages/MainPage";
 import { Routes, Route } from "react-router-dom";
-import ScrollUpButton from "./components/tsx/ScrollUpButton";
+import ScrollUpButton from "./components/tsx/mainComponents/ScrollUpButton";
 import MapsPage from "./pages/MapsPage";
 import WeaponsPage from "./pages/WeaponsPage";
 

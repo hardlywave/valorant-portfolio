@@ -3,7 +3,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
 import React, { useState } from "react";
-import AgentModal from "./AgentModal";
+import AgentModal from "./modalComponents/AgentModal";
 
 interface AgentProps {
   agent: IAgent;

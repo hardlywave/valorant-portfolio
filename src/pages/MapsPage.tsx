@@ -3,7 +3,7 @@ import { useMediaQuery } from "react-responsive";
 
 import useMaps from "../requests/getMaps";
 import Maps from "../components/tsx/Maps";
-import Loader from "../components/tsx/Loader";
+import Loader from "../components/tsx/mainComponents/Loader";
 
 import ImageList from "@mui/material/ImageList";
 

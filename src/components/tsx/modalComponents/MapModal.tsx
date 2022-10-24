@@ -1,6 +1,6 @@
-import "../scss/Modal.scss";
-import { IMap } from "../../models";
-import ModalCloseButton from "./ModalCloseButton";
+import "../../scss/Modal.scss";
+import { IMap } from "../../../models";
+import ModalCloseButton from "./components/ModalCloseButton";
 
 interface MapProps {
   map: IMap;
