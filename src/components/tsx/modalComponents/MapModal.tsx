@@ -1,5 +1,5 @@
 import "../../scss/Modal.scss";
-import { IMap } from "../../../models";
+import { IMap } from "../../../interfaces/models";
 import ModalCloseButton from "./components/ModalCloseButton";
 
 interface MapProps {

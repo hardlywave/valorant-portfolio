@@ -8,7 +8,7 @@ import Loader from "../components/tsx/mainComponents/Loader";
 
 import ImageList from "@mui/material/ImageList";
 import Button from "@mui/material/Button";
-import { IAgent } from "../models";
+import { IAgent } from "../interfaces/models";
 import Box from "@mui/material/Box";
 
 const AgentsPage = () => {

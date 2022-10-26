@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IMap } from "../models";
+import { IMap } from "../interfaces/models";
 import axios from "axios";
 
 const useMaps = () => {

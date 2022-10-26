@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IAgent } from "../models";
+import { IAgent } from "../interfaces/models";
 import axios from "axios";
 
 const useAgents = () => {

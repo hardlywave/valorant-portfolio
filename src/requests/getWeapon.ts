@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { IWeapon } from "../models";
+import { IWeapon } from "../interfaces/models";
 import axios from "axios";
 
 const useWeapons = () => {

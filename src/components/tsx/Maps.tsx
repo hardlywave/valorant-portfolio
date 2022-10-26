@@ -1,4 +1,4 @@
-import { IMap } from "../../models";
+import { IMap } from "../../interfaces/models";
 import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
