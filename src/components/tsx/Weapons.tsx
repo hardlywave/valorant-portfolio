@@ -17,10 +17,11 @@ const Weapons = ({ weapon }: WeaponsProps) => {
         height: 180,
         borderRadius: "7px",
         boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
+        transitionDuration: "0.2s",
         transform: "scale(0.96)",
         "&:hover": {
-          transform: "scale(0.98)",
           zIndex: 1,
+          transform: "scale(0.98)",
         },
       }}
     >

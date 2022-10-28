@@ -10,15 +10,7 @@ interface AgentProps {
 }
 
 const Agents = ({ agent }: AgentProps) => {
-  const [isHover, setIsHover] = useState(false);
   const [modalOpened, setModalOpened] = useState(false);
-
-  const handleMouseEnter = () => {
-    setIsHover(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHover(false);
-  };
 
   const handlerOnClickEvent = () => setModalOpened(!modalOpened);
 
@@ -30,9 +22,13 @@ const Agents = ({ agent }: AgentProps) => {
           width: "100%",
           height: "100%",
           borderRadius: "7px",
-          transform: isHover ? "scale(0.98)" : "scale(0.96)",
           boxShadow: "-2px 3px 10px 6px rgb(30 30 30 / 40%)",
-          zIndex: isHover ? 1 : "",
+          transitionDuration: "0.2s",
+          transform: "scale(0.96)",
+          "&:hover": {
+            zIndex: 1,
+            transform: "scale(0.98)",
+          },
         }}
       >
         <ListItemButton
@@ -46,8 +42,6 @@ const Agents = ({ agent }: AgentProps) => {
             justifyContent: "center",
             boxShadow: "inset 1px 3px 30px 25px rgb(30 30 30 / 50%)",
           }}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
         >
           <ImageListItem key={agent.uuid} sx={{ borderRadius: "7px" }}>
             <img

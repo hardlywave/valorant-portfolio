@@ -13,7 +13,6 @@ import { useState, MouseEvent } from "react";
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
-  const [isHover, setIsHover] = useState(false);
 
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
@@ -31,13 +30,6 @@ const Header = () => {
 
   const handleOpenNavMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-  };
-
-  const handleMouseEnter = () => {
-    setIsHover(true);
-  };
-  const handleMouseLeave = () => {
-    setIsHover(false);
   };
 
   return (
@@ -58,24 +50,30 @@ const Header = () => {
             component="a"
             href="/"
             sx={{
-              mr: 2,
               ml: 1,
+              mr: 1,
               display: { md: "flex" },
               fontFamily: "Roboto",
+              borderRadius: "",
+              p: 1,
               fontWeight: 700,
+              color: "white",
               letterSpacing: ".3rem",
-              color: "#a4a4a4",
               textDecoration: "none",
+              transition: "0.5s",
               "&:hover": {
-                transform: "scale(1.05) !important",
-                borderBottom: "1px solid white",
-                color: "white",
+                transform: "scale(1.04) rotate(-5deg) !important",
+                backgroundColor: "rgba(164,164,164,0.52)",
+                borderRadius: "7px",
               },
             }}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
           >
-            <SvgIcon viewBox="0 0 35 35" sx={{ mr: 1 }}>
+            <SvgIcon
+              viewBox="0 0 35 35"
+              sx={{
+                mr: 1,
+              }}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -85,7 +83,7 @@ const Header = () => {
               >
                 <path
                   d="M99.25 48.66V10.28c0-.59-.75-.86-1.12-.39l-41.92 52.4a.627.627 0 00.49 1.02h30.29c.82 0 1.59-.37 2.1-1.01l9.57-11.96c.38-.48.59-1.07.59-1.68zM1.17 50.34L32.66 89.7c.51.64 1.28 1.01 2.1 1.01h30.29c.53 0 .82-.61.49-1.02L1.7 9.89c-.37-.46-1.12-.2-1.12.39v38.38c0 .61.21 1.2.59 1.68z"
-                  fill={isHover ? "white" : "#a4a4a4"}
+                  fill="white"
                 ></path>
               </svg>
             </SvgIcon>
@@ -108,13 +106,13 @@ const Header = () => {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               sx={{
-                color: "#a4a4a4",
+                color: "white",
                 p: "1px",
+                transitionDuration: "0.3s",
                 "&:hover": {
-                  transform: "scale(1.02) !important",
-                  border: "2px solid white",
-                  borderRadius: "5px",
-                  color: "white",
+                  transform: "scale(1.06) !important",
+                  borderRadius: "7px",
+                  backgroundColor: "rgba(164,164,164,0.52)",
                 },
               }}
             >
@@ -144,10 +142,9 @@ const Header = () => {
                       fontFamily: "Roboto",
                       width: "100%",
                       minWidth: 100,
-                      transitionDuration: 0.2,
+                      transitionDuration: "0.3s",
                       "&:hover": {
                         color: "#1E1E1EB8",
-                        textDecoration: "underline",
                       },
                     }}
                     href={page.link}
@@ -161,6 +158,7 @@ const Header = () => {
           <Box
             sx={{
               flexGrow: 0,
+              gap: "5px",
               display: {
                 xs: "none",
                 md: "flex",
@@ -172,16 +170,16 @@ const Header = () => {
                 key={page.id}
                 sx={{
                   my: 2,
-                  color: "#a4a4a4",
+                  color: "white",
                   display: "block",
                   textAlignLast: "center",
                   fontFamily: "Roboto",
                   padding: "5px",
-                  transitionDuration: 0.2,
+                  transition: "0.5s",
                   "&:hover": {
-                    transform: "scale(1.1) !important",
-                    color: "white",
-                    textDecoration: "underline",
+                    transform: "rotate(-10deg)",
+                    borderRadius: "7px",
+                    backgroundColor: "rgba(164,164,164,0.52)",
                   },
                 }}
                 href={page.link}

@@ -21,11 +21,12 @@ const Maps = ({ map }: MapsProps) => {
           width: "100%",
           height: "100%",
           borderRadius: "7px",
-          transform: "scale(0.96)",
           boxShadow: "-1px 1px 10px 6px rgb(30 30 30 / 27%)",
+          transitionDuration: "0.2s",
+          transform: "scale(0.96)",
           "&:hover": {
-            transform: "scale(0.98)",
             zIndex: 1,
+            transform: "scale(0.98)",
           },
         }}
       >
