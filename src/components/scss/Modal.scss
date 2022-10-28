@@ -1,7 +1,9 @@
 :root {
   --subtext-color: rgba(84, 84, 84, 0.88);
-  --theme-label-tertiary: rgba(134, 134, 134, 0.65);
+  --theme-label-tertiary: rgb(134 134 134 / 67%);
   --info-name-border-color: rgb(134 134 134 / 44%);
+  --scroll-bar-background: rgb(0 0 0 / 13%);
+  --abilities-list-background: rgb(175 175 175 / 34%);
 }
 
 * {
@@ -26,7 +28,7 @@
 
   &::-webkit-scrollbar {
     width: 8px;
-    background-color: transparent;
+    background-color: var(--scroll-bar-background);
   }
 
   &::-webkit-scrollbar-thumb {
@@ -74,7 +76,7 @@
     &::-webkit-scrollbar {
       width: 8px;
       display: unset;
-      background-color: transparent;
+      background-color: var(--scroll-bar-background);
     }
 
     &::-webkit-scrollbar-thumb {
@@ -137,19 +139,18 @@
 
 .abilities-list {
   position: relative;
-  margin: 8px;
+  background-color: var(--abilities-list-background);
   padding: 5px;
   overflow-y: overlay;
   overflow-x: hidden;
   -ms-overflow-x: hidden;
-  border: 1px solid black;
-  border-radius: 10px;
+  border-top: 1px solid black;
   flex-wrap: nowrap;
 
   &::-webkit-scrollbar {
     width: 8px;
     height: 10px;
-    background-color: transparent;
+    background-color: var(--scroll-bar-background);
   }
 
   &::-webkit-scrollbar-thumb {
