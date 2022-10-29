@@ -12,12 +12,14 @@ export interface IAgent {
   background: string;
   backgroundGradientColors: [string, string, string, string];
   abilities: [IAbilities];
-  role: {
-    uuid: string;
-    displayName: string;
-    description: string;
-    displayIcon: string;
-  };
+  role: IRole;
+}
+
+export interface IRole {
+  uuid: string;
+  displayName: string;
+  description: string;
+  displayIcon: string;
 }
 
 export interface IAbilities {

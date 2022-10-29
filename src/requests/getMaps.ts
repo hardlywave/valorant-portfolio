@@ -12,7 +12,7 @@ const useMaps = () => {
       .get<[], any>(`https://valorant-api.com/v1/maps`)
       .then((res) => res.data);
     setMaps(response.data);
-    setLoading(false);
+    setTimeout(() => setLoading(false), 1000);
   }
 
   useEffect(() => {

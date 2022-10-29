@@ -12,7 +12,7 @@ const useWeapons = () => {
       .get<IWeapon[], any>(`https://valorant-api.com/v1/weapons`)
       .then((res) => res.data);
     setWeapons(response.data);
-    setLoading(false);
+    setTimeout(() => setLoading(false), 1000);
   }
 
   useEffect(() => {

@@ -14,7 +14,7 @@ const useAgents = () => {
       )
       .then((res) => res.data);
     setAgents(response.data);
-    setLoading(false);
+    setTimeout(() => setLoading(false), 1000);
   }
 
   useEffect(() => {

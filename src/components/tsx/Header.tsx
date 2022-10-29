@@ -19,12 +19,11 @@ const Header = () => {
   };
 
   const pages = [
-    { name: "Agents", link: "/agents", id: "0" },
-    { name: "Maps", link: "/maps", id: "1" },
+    { name: "Agents", link: "/agents" },
+    { name: "Maps", link: "/maps" },
     {
       name: "Weapons",
       link: "/weapons",
-      id: "2",
     },
   ];
 
@@ -130,9 +129,9 @@ const Header = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {pages.map((page, index) => (
                 <MenuItem
-                  key={page.id}
+                  key={index}
                   onClick={handleCloseNavMenu}
                   sx={{ p: 0 }}
                 >
@@ -165,9 +164,9 @@ const Header = () => {
               },
             }}
           >
-            {pages.map((page) => (
+            {pages.map((page, index) => (
               <Button
-                key={page.id}
+                key={index}
                 sx={{
                   my: 2,
                   color: "white",
@@ -177,7 +176,7 @@ const Header = () => {
                   padding: "5px",
                   transition: "0.5s",
                   "&:hover": {
-                    transform: "rotate(-10deg)",
+                    transform: `rotate(${index === 1 ? "-10deg" : "10deg"})`,
                     borderRadius: "7px",
                     backgroundColor: "rgba(164,164,164,0.52)",
                   },
