@@ -61,9 +61,7 @@ const Header = () => {
               textDecoration: "none",
               transition: "0.5s",
               "&:hover": {
-                transform: "scale(1.04) rotate(-5deg) !important",
-                backgroundColor: "rgba(164,164,164,0.52)",
-                borderRadius: "7px",
+                transform: "scale(1.04) !important",
               },
             }}
           >
@@ -156,6 +154,7 @@ const Header = () => {
           </Box>
           <Box
             sx={{
+              ml: 2,
               flexGrow: 0,
               gap: "5px",
               display: {
