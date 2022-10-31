@@ -1,8 +1,7 @@
-import { IWeapon } from "../../interfaces/models";
+import { IWeapon } from "../../interfaces/IWeapon";
 import ListItemButton from "@mui/material/ListItemButton";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import AgentModal from "./modalComponents/AgentModal";
 import React, { useState } from "react";
 import WeaponModal from "./modalComponents/WeaponModal";
 

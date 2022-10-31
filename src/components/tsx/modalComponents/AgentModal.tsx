@@ -1,5 +1,5 @@
 import "../../scss/Modal.scss";
-import { IAgent } from "../../../interfaces/models";
+import { IAgent } from "../../../interfaces/IAgent";
 import ModalCloseButton from "./components/ModalCloseButton";
 
 interface AgentProps {

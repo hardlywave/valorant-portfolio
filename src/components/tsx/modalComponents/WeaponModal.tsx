@@ -1,5 +1,6 @@
 import "../../scss/Modal.scss";
-import { ISkin, IWeapon } from "../../../interfaces/models";
+import { ISkin } from "../../../interfaces/ISkin";
+import { IWeapon } from "../../../interfaces/IWeapon";
 import ModalCloseButton from "./components/ModalCloseButton";
 import React from "react";
 

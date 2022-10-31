@@ -5,13 +5,13 @@ import Weapons from "../components/tsx/Weapons";
 import Loader from "../components/tsx/mainComponents/Loader";
 
 import ImageList from "@mui/material/ImageList";
-import { IWeapon } from "../interfaces/models";
+import { IWeapon } from "../interfaces/IWeapon";
 import Button from "@mui/material/Button";
 
 const WeaponsPage = () => {
   const { loading, weapons } = useWeapon();
   const [weaponsList, setWeaponsList] = useState<IWeapon[]>([]);
-  const [skinSwaper, setSkinSwaper] = useState(false);
+  const [skinSwapper, setSkinSwapper] = useState(false);
   const [sortBy, setSortBy] = useState("name");
 
   const isSmallWindow = useMediaQuery({ query: `(max-width: 600px)` });
@@ -35,7 +35,7 @@ const WeaponsPage = () => {
     );
   }
 
-  const swapTheSkin = () => setSkinSwaper(!skinSwaper);
+  const swapTheSkin = () => setSkinSwapper(!skinSwapper);
 
   useEffect(() => {
     setWeaponsList(weapons);
