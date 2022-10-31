@@ -12,9 +12,10 @@ const ModalCloseButton = ({ setClose }: CloseButtonProps) => {
         position: "fixed",
         padding: 0,
         margin: "10px",
+        transition: "1s",
         "&:hover": {
           backgroundColor: "rgb(0 0 0 / 15%)",
-          transform: "scale(1.05)",
+          transform: "scale(1.1) rotate(540deg)",
         },
       }}
       onClick={() => handlerCloseButton()}

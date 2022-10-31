@@ -54,7 +54,6 @@ const Header = () => {
               display: { md: "flex" },
               fontFamily: "Roboto",
               borderRadius: "",
-              p: 1,
               fontWeight: 700,
               color: "white",
               letterSpacing: ".3rem",

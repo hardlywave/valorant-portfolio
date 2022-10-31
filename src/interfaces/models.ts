@@ -45,9 +45,21 @@ export interface IWeapon {
   defaultSkinUuid: string;
   displayIcon: string;
   killStreamIcon: string;
-  skins: [
-    {
-      displayIcon: string;
-    }
-  ];
+  shopData: IShopData;
+  skins: [ISkin];
+}
+
+export interface ISkin {
+  displayName: string;
+  displayIcon: string;
+  levels: [ISkinLevel];
+}
+
+export interface ISkinLevel {
+  displayIcon: string;
+}
+
+export interface IShopData {
+  category: string;
+  categoryText: string;
 }

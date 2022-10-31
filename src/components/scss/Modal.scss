@@ -60,31 +60,6 @@
   width: 100%;
 }
 
-@media (max-width: 768px) {
-  .modal-content {
-    flex-direction: column;
-    overflow-y: overlay;
-
-    &::-webkit-scrollbar {
-      width: 8px;
-      display: unset;
-      background-color: var(--scroll-bar-background);
-    }
-
-    &::-webkit-scrollbar-thumb {
-      border-radius: 4px;
-      background: var(--theme-label-tertiary);
-    }
-
-    &::-webkit-scrollbar-track {
-      background: transparent;
-    }
-  }
-  .modal-content-image-container {
-    overflow: unset;
-  }
-}
-
 .modal-content-image {
   position: relative;
   display: flex;
@@ -119,6 +94,7 @@
 
 .modal-container-info {
   position: relative;
+  overflow: overlay;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -132,7 +108,7 @@
 .abilities-list {
   position: relative;
   background-color: var(--abilities-list-background);
-  padding: 5px;
+  width: 100%;
   overflow-y: overlay;
   overflow-x: hidden;
   -ms-overflow-x: hidden;
@@ -162,9 +138,15 @@
   align-items: center
 }
 
+.skin-header {
+  margin: 10px 0;
+  align-items: center
+}
+
 .abilities-container {
   display: flex;
   flex-direction: column;
+  margin: 0 8px;
   padding-bottom: 15px;
 }
 
@@ -195,6 +177,26 @@
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: var(--info-name-border-color);
+}
+
+.weapon-name {
+  -webkit-text-fill-color: black;
+}
+
+.weapon-skins-list {
+  position: relative;
+  background-color: var(--abilities-list-background);
+  width: 100%;
+  padding-bottom: 10px;
+  overflow-y: overlay;
+  overflow-x: hidden;
+  -ms-overflow-x: hidden;
+  border-top: 1px solid black;
+  flex-wrap: nowrap;
+}
+
+.skins-container {
+  margin: 0 8px;
 }
 
 .content-image-background {
@@ -236,5 +238,44 @@
   text-align: -webkit-center;
   border: 1px solid black;
   border-radius: 50%;
+}
+
+.skin-image-container {
+  text-align: center;
+}
+
+.skin-list-item-breaker {
+  height: 1px;
+  background-color: var(--weapon-list-breaker);
+  margin: 10px 8px;
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    flex-direction: column;
+    overflow-y: overlay;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      display: unset;
+      background-color: var(--scroll-bar-background);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 4px;
+      background: var(--theme-label-tertiary);
+    }
+
+    &::-webkit-scrollbar-track {
+      background: transparent;
+    }
+  }
+  .modal-content-image-container {
+    overflow: unset;
+  }
+
+  .modal-container-info {
+    overflow: unset;
+  }
 }
 
