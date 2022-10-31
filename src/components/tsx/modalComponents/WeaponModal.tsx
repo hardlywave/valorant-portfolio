@@ -56,38 +56,7 @@ const WeaponModal = ({ weapon, setClose }: WeaponProps) => {
               <p className="agent-info-dev-name">
                 Category: {categoriesChecker(weapon)}
               </p>
-              {/*<span className="modal-info-description">*/}
-              {/*  {agent.description}*/}
-              {/*</span>*/}
             </div>
-            {/*<div className="abilities-list">*/}
-            {/*  {agent.abilities.map((el) => (*/}
-            {/*    <div key={el.displayName} className="abilities-container">*/}
-            {/*      <div className="abilities-header">*/}
-            {/*        <div style={{ display: "flex", flexDirection: "column" }}>*/}
-            {/*          <h4 className="abilities-header-name">*/}
-            {/*            {el.displayName}*/}
-            {/*          </h4>*/}
-            {/*          <span className="abilities-header-slot">{el.slot}</span>*/}
-            {/*        </div>*/}
-            {/*        {el.displayIcon ? (*/}
-            {/*          <img*/}
-            {/*            className="abilities-header-logo"*/}
-            {/*            alt={`${el.displayName}`}*/}
-            {/*            srcSet={el.displayIcon}*/}
-            {/*          />*/}
-            {/*        ) : (*/}
-            {/*          <label className="abilities-header-logo-label">*/}
-            {/*            <span>Img error</span>*/}
-            {/*          </label>*/}
-            {/*        )}*/}
-            {/*      </div>*/}
-            {/*      <span className="abilities-description">*/}
-            {/*        {el.description}*/}
-            {/*      </span>*/}
-            {/*    </div>*/}
-            {/*  ))}*/}
-            {/*</div>*/}
             <div className="weapon-skins-list">
               {weapon.skins.map(
                 (skin, index) =>
