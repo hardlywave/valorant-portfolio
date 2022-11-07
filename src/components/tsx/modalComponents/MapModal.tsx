@@ -1,6 +1,7 @@
 import "../../scss/Modal.scss";
 import { IMap } from "../../../interfaces/IMap";
 import ModalCloseButton from "./components/ModalCloseButton";
+import { useEffect } from "react";
 
 interface MapProps {
   map: IMap;
@@ -8,10 +9,24 @@ interface MapProps {
 }
 
 const MapModal = ({ map, setClose }: MapProps) => {
+  const eventHandler = () => {
+    setClose(false);
+  };
+  useEffect(() => {
+    const handleEsc = (event: any) => {
+      if (event.keyCode === 27) {
+        setClose(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
   return (
     <>
-      <div className="modal-container">
-        <div className="modal-content">
+      <div className="modal-container" onClick={eventHandler}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <div className="modal-content-image-container">
             <div className="content-image">
               <img

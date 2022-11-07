@@ -2,7 +2,7 @@ import "../../scss/Modal.scss";
 import { ISkin } from "../../../interfaces/ISkin";
 import { IWeapon } from "../../../interfaces/IWeapon";
 import ModalCloseButton from "./components/ModalCloseButton";
-import React from "react";
+import React, { useEffect } from "react";
 
 interface WeaponProps {
   weapon: IWeapon;
@@ -27,10 +27,25 @@ const WeaponModal = ({ weapon, setClose }: WeaponProps) => {
       : categoryText + ` (${category})`;
   };
 
+  const eventHandler = () => {
+    setClose(false);
+  };
+  useEffect(() => {
+    const handleEsc = (event: any) => {
+      if (event.keyCode === 27) {
+        setClose(false);
+      }
+    };
+    window.addEventListener("keydown", handleEsc);
+    return () => {
+      window.removeEventListener("keydown", handleEsc);
+    };
+  }, []);
+
   return (
     <>
-      <div className="modal-container">
-        <div className="modal-content">
+      <div className="modal-container" onClick={eventHandler}>
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <div className="modal-content-image-container">
             <div
               className="content-image"

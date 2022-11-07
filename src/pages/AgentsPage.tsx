@@ -21,9 +21,20 @@ const AgentsPage = () => {
 
   const windowSize = () => (isSmallWindow ? 1 : isMediumWindow ? 2 : 4);
 
-  const sortByHandler = () => {
+  const sortByHandler = () =>
     sortBy === "role" ? setSortBy("name") : setSortBy("role");
+
+  const sortByRole = () => {
+    return [...agents].sort((el1, el2) =>
+      el1.role.displayName === el2.role.displayName ? 1 : -1
+    );
   };
+
+  function sortByName() {
+    return [...agents].sort((el1, el2) =>
+      el1.displayName.localeCompare(el2.displayName)
+    );
+  }
 
   useEffect(() => {
     setAgentsList(agents);
@@ -34,18 +45,6 @@ const AgentsPage = () => {
       setAgentsList(sortByName());
     }
   }, [agents, sortBy]);
-
-  function sortByRole() {
-    return [...agents].sort((el1, el2) =>
-      el1.role.displayName === el2.role.displayName ? 1 : -1
-    );
-  }
-
-  function sortByName() {
-    return [...agents].sort((el1, el2) =>
-      el1.displayName.localeCompare(el2.displayName)
-    );
-  }
 
   return (
     <>
