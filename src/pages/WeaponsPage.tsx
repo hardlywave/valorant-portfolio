@@ -1,80 +1,92 @@
-import React, { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
+import React, { useMemo, useState } from "react";
+import "../components/scss/Catalog.scss";
+
 import useWeapon from "../requests/getWeapon";
 import Weapons from "../components/tsx/Weapons";
 import Loader from "../components/tsx/mainComponents/Loader";
+import LoadError from "../components/tsx/mainComponents/LoadError";
+import { ISkin } from "../interfaces/ISkin";
+import { displayableSkins, weaponCategory } from "../utils/weapon";
 
-import ImageList from "@mui/material/ImageList";
-import { IWeapon } from "../interfaces/IWeapon";
-import Button from "@mui/material/Button";
+type SortBy = "name" | "category";
 
 const WeaponsPage = () => {
-  const { loading, weapons } = useWeapon();
-  const [weaponsList, setWeaponsList] = useState<IWeapon[]>([]);
-  const [skinSwapper, setSkinSwapper] = useState(false);
-  const [sortBy, setSortBy] = useState("name");
+  const { loading, error, weapons } = useWeapon();
+  const [sortBy, setSortBy] = useState<SortBy>("name");
+  // Weapon uuid -> skin shown on its card. Empty means standard skins.
+  const [skins, setSkins] = useState<{ [uuid: string]: ISkin }>({});
 
-  const isSmallWindow = useMediaQuery({ query: `(max-width: 600px)` });
-  const isMediumWindow = useMediaQuery({ query: `(max-width: 800px)` });
+  const weaponsList = useMemo(
+    () =>
+      [...weapons].sort(
+        (a, b) =>
+          (sortBy === "category"
+            ? weaponCategory(a).localeCompare(weaponCategory(b))
+            : 0) || a.displayName.localeCompare(b.displayName)
+      ),
+    [weapons, sortBy]
+  );
 
-  const windowSize = () => (isSmallWindow ? 1 : isMediumWindow ? 2 : 3);
-
-  const sortByHandler = () => {
-    sortBy === "category" ? setSortBy("name") : setSortBy("category");
+  const shuffleSkins = () => {
+    const picked: { [uuid: string]: ISkin } = {};
+    weapons.forEach((weapon) => {
+      const options = displayableSkins(weapon);
+      if (options.length > 0) {
+        picked[weapon.uuid] =
+          options[Math.floor(Math.random() * options.length)];
+      }
+    });
+    setSkins(picked);
   };
 
-  function sortByCategory() {
-    return [...weapons].sort((el1, el2) =>
-      el1.category.split("::")[1] === el2.category.split("::")[1] ? 1 : -1
-    );
-  }
-
-  function sortByName() {
-    return [...weapons].sort((el1, el2) =>
-      el1.displayName.localeCompare(el2.displayName)
-    );
-  }
-
-  const swapTheSkin = () => setSkinSwapper(!skinSwapper);
-
-  useEffect(() => {
-    setWeaponsList(weapons);
-    if (sortBy === "category") {
-      setWeaponsList(sortByCategory());
-    } else if (sortBy === "name") {
-      setWeaponsList(sortByName());
-    }
-  }, [weapons, sortBy]);
+  const shuffled = Object.keys(skins).length > 0;
 
   return (
-    <>
-      {loading && <Loader loading={loading} />}
-      <Button
-        onClick={() => sortByHandler()}
-        className="sortAgentsButton"
-        variant="outlined"
-        sx={{ m: "15px 0 0 15px", transform: "scale(0.98)" }}
-      >
-        Sort by {sortBy}
-      </Button>
-      <Button
-        onClick={() => swapTheSkin()}
-        className="sortAgentsButton"
-        variant="outlined"
-        sx={{ m: "15px 0 0 15px", transform: "scale(0.98)" }}
-      >
-        Change Skins
-      </Button>
-      <ImageList
-        cols={windowSize()}
-        style={{ overflowY: "auto", padding: "0 15px" }}
-        gap={15}
-      >
-        {weaponsList.map((weapon, index) => (
-          <Weapons key={index} weapon={weapon} />
+    <main className="page">
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">Weapons</h1>
+          <p className="page-subtitle">
+            Select a weapon to see its stats and browse every skin.
+          </p>
+        </div>
+        <div className="toolbar">
+          <button
+            className={`chip${sortBy === "name" ? " is-active" : ""}`}
+            aria-pressed={sortBy === "name"}
+            onClick={() => setSortBy("name")}
+          >
+            By name
+          </button>
+          <button
+            className={`chip${sortBy === "category" ? " is-active" : ""}`}
+            aria-pressed={sortBy === "category"}
+            onClick={() => setSortBy("category")}
+          >
+            By category
+          </button>
+          <button className="chip" onClick={shuffleSkins}>
+            Shuffle skins
+          </button>
+          {shuffled && (
+            <button className="chip" onClick={() => setSkins({})}>
+              Standard skins
+            </button>
+          )}
+        </div>
+      </div>
+      <Loader loading={loading} />
+      {error && <LoadError />}
+      <div className="catalog-grid">
+        {weaponsList.map((weapon) => (
+          <Weapons
+            key={weapon.uuid}
+            weapon={weapon}
+            skin={skins[weapon.uuid]}
+          />
         ))}
-      </ImageList>
-    </>
+      </div>
+    </main>
   );
 };
 

@@ -1,0 +1,288 @@
+// Profile layout: info column, portrait over the red bands, name and bio.
+.agent {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(220px, 0.8fr) minmax(280px, 1.1fr) minmax(
+      320px,
+      1.5fr
+    );
+  grid-template-areas: "side stage main";
+  gap: 0 32px;
+  min-height: calc(100vh - var(--header-height));
+  margin-top: calc(-1 * var(--header-height));
+  padding: 0 56px 0 32px;
+  overflow: hidden;
+}
+
+// Large washed-out copy of the portrait behind the text column.
+.agent-ghost {
+  position: absolute;
+  top: -8%;
+  right: -14%;
+  height: 150%;
+  max-width: none;
+  opacity: 0.09;
+  filter: grayscale(1);
+  pointer-events: none;
+  user-select: none;
+}
+
+.agent-stage {
+  grid-area: stage;
+  position: relative;
+  min-height: 560px;
+  background: var(--stripes);
+}
+
+.agent-portrait {
+  position: absolute;
+  top: 4%;
+  left: 50%;
+  height: 135%;
+  max-width: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 18px 24px rgba(27, 31, 35, 0.25));
+  animation: agent-in 0.45s ease-out;
+  // The image box is much wider than the figure and spills over the columns
+  // beside it; without this it swallows clicks meant for their links.
+  pointer-events: none;
+}
+
+.agent-side {
+  grid-area: side;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: calc(var(--header-height) + 16px) 0 40px;
+}
+
+.agent-side-text {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.agent-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.agent-skill {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 8px;
+  color: var(--ink);
+  transition: background-color 0.15s, color 0.15s;
+
+  &:hover {
+    color: var(--red);
+  }
+
+  &.is-active {
+    background: var(--red);
+    color: #fff;
+  }
+}
+
+.agent-skill-letter {
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.agent-skill-detail {
+  margin-top: 14px;
+  padding-left: 12px;
+  border-left: 3px solid var(--red);
+
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  span {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+}
+
+.agent-sprays {
+  display: grid;
+  grid-template-columns: repeat(2, 72px);
+  gap: 10px;
+  margin-top: 12px;
+
+  img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+  }
+}
+
+.agent-main {
+  grid-area: main;
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  padding: calc(var(--header-height) + 16px) 0 40px;
+}
+
+.agent-title {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  color: var(--red);
+}
+
+.agent-name {
+  font-size: clamp(52px, 7.5vw, 112px);
+  font-weight: 800;
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.agent-role-badge {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 4px solid currentColor;
+  border-radius: 50%;
+}
+
+.agent-subtitle {
+  margin-top: 8px;
+  color: var(--red);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.agent-description {
+  margin-top: 24px;
+  max-width: 56ch;
+  font-size: 15px;
+}
+
+.agent-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 32px;
+
+  img {
+    width: 76px;
+    height: 76px;
+    border-radius: 14px;
+    object-fit: cover;
+  }
+}
+
+.agent-main .marker {
+  margin-top: 32px;
+}
+
+.agent-pager {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  margin-top: 24px;
+  color: var(--red);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+
+  a:hover {
+    color: var(--ink);
+  }
+}
+
+.agent-hatch {
+  position: absolute;
+  top: 38%;
+  right: 20px;
+}
+
+@keyframes agent-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+}
+
+// Tablet: portrait and name side by side, info underneath.
+@media (max-width: 1100px) {
+  .agent {
+    grid-template-columns: minmax(240px, 1fr) minmax(0, 1.3fr);
+    grid-template-areas:
+      "stage main"
+      "side side";
+    // The stage now sits under the logo, so stop tucking it behind the header.
+    margin-top: 0;
+    padding: 0 32px;
+  }
+
+  .agent-main {
+    padding-top: 16px;
+  }
+
+  // The stage is no longer the full page height here, so cut the portrait
+  // at its top and bottom edges while still letting it spill sideways.
+  .agent-stage {
+    clip-path: inset(0 -100vw);
+  }
+
+  .agent-side {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    padding: 32px 0 48px;
+  }
+
+  .agent-hatch {
+    display: none;
+  }
+}
+
+// Phone: single column, name first.
+@media (max-width: 700px) {
+  .agent {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "main"
+      "stage"
+      "side";
+    padding: 0 16px;
+  }
+
+  .agent-main {
+    padding-bottom: 24px;
+  }
+
+  .agent-stage {
+    min-height: 420px;
+    margin: 0 -16px;
+  }
+
+  .agent-ghost {
+    display: none;
+  }
+
+  .agent-role-badge {
+    width: 48px;
+    height: 48px;
+    border-width: 3px;
+  }
+}

@@ -1,74 +1,68 @@
-import React, { useEffect, useState } from "react";
-import { useMediaQuery } from "react-responsive";
+import React, { useMemo, useState } from "react";
 import "../components/scss/AgentsPage.scss";
 
 import useAgents from "../requests/getAgents";
 import Agents from "../components/tsx/Agents";
 import Loader from "../components/tsx/mainComponents/Loader";
+import LoadError from "../components/tsx/mainComponents/LoadError";
+import { sortByName } from "../utils/agent";
 
-import ImageList from "@mui/material/ImageList";
-import Button from "@mui/material/Button";
-import { IAgent } from "../interfaces/IAgent";
-import Box from "@mui/material/Box";
+const ALL = "All";
 
 const AgentsPage = () => {
-  const { loading, agents } = useAgents();
-  const [agentsList, setAgentsList] = useState<IAgent[]>([]);
-  const [sortBy, setSortBy] = useState("role");
+  const { loading, error, agents } = useAgents();
+  const [role, setRole] = useState(ALL);
 
-  const isSmallWindow = useMediaQuery({ query: `(max-width: 450px)` });
-  const isMediumWindow = useMediaQuery({ query: `(max-width: 800px)` });
+  const roles = useMemo(
+    () =>
+      [ALL].concat(
+        agents
+          .map((agent) => agent.role.displayName)
+          .filter((name, index, all) => all.indexOf(name) === index)
+          .sort()
+      ),
+    [agents]
+  );
 
-  const windowSize = () => (isSmallWindow ? 1 : isMediumWindow ? 2 : 4);
-
-  const sortByHandler = () =>
-    sortBy === "role" ? setSortBy("name") : setSortBy("role");
-
-  const sortByRole = () => {
-    return [...agents].sort((el1, el2) =>
-      el1.role.displayName === el2.role.displayName ? 1 : -1
-    );
-  };
-
-  function sortByName() {
-    return [...agents].sort((el1, el2) =>
-      el1.displayName.localeCompare(el2.displayName)
-    );
-  }
-
-  useEffect(() => {
-    setAgentsList(agents);
-
-    if (sortBy === "role") {
-      setAgentsList(sortByRole());
-    } else if (sortBy === "name") {
-      setAgentsList(sortByName());
-    }
-  }, [agents, sortBy]);
+  const agentsList = useMemo(
+    () =>
+      sortByName(agents).filter(
+        (agent) => role === ALL || agent.role.displayName === role
+      ),
+    [agents, role]
+  );
 
   return (
-    <>
-      {loading && <Loader loading={loading} />}
-      <Box>
-        <Button
-          onClick={() => sortByHandler()}
-          className="sortAgentsButton"
-          variant="outlined"
-          sx={{ m: "15px 0 0 15px", transform: "scale(0.98)" }}
-        >
-          Sort by {sortBy}
-        </Button>
-        <ImageList
-          cols={windowSize()}
-          style={{ overflowY: "auto", padding: "0 15px" }}
-          gap={15}
-        >
-          {agentsList.map((agent, index) => (
-            <Agents key={index} agent={agent} />
+    <main className="page">
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">Agents</h1>
+          <p className="page-subtitle">
+            {agents.length > 0 && `${agents.length} agents. `}Pick one to open
+            their profile, abilities and sprays.
+          </p>
+        </div>
+        <div className="toolbar" role="group" aria-label="Filter by role">
+          {roles.map((name) => (
+            <button
+              key={name}
+              className={`chip${name === role ? " is-active" : ""}`}
+              aria-pressed={name === role}
+              onClick={() => setRole(name)}
+            >
+              {name}
+            </button>
           ))}
-        </ImageList>
-      </Box>
-    </>
+        </div>
+      </div>
+      <Loader loading={loading} />
+      {error && <LoadError />}
+      <div className="agents-grid">
+        {agentsList.map((agent) => (
+          <Agents key={agent.uuid} agent={agent} />
+        ))}
+      </div>
+    </main>
   );
 };
 

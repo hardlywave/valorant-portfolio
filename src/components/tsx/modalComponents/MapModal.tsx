@@ -1,75 +1,44 @@
-import "../../scss/Modal.scss";
+import React from "react";
 import { IMap } from "../../../interfaces/IMap";
-import ModalCloseButton from "./components/ModalCloseButton";
-import { useEffect } from "react";
+import ModalShell from "./components/ModalShell";
 
 interface MapProps {
   map: IMap;
   setClose: (value: boolean) => void;
 }
 
-const MapModal = ({ map, setClose }: MapProps) => {
-  const eventHandler = () => {
-    setClose(false);
-  };
-  useEffect(() => {
-    const handleEsc = (event: any) => {
-      if (event.keyCode === 27) {
-        setClose(false);
-      }
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
-  }, []);
-  return (
-    <>
-      <div className="modal-container" onClick={eventHandler}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-content-image-container">
-            <div className="content-image">
-              <img
-                className="content-image-background"
-                alt={map.displayName}
-                srcSet={map.splash}
-              />
-            </div>
+const MapModal = ({ map, setClose }: MapProps) => (
+  <ModalShell label={map.displayName} setClose={setClose}>
+    <div className="modal-media">
+      <img className="modal-media-cover" src={map.splash} alt="" />
+    </div>
+    <div className="modal-info">
+      <h2 className="modal-title">{map.displayName}</h2>
+      <dl className="modal-facts">
+        {map.coordinates && (
+          <div>
+            <dt>Coordinates</dt>
+            <dd>{map.coordinates}</dd>
           </div>
-          <div className="modal-container-info">
-            <div className="modal-info-box">
-              <p
-                className="modal-info-name"
-                style={{
-                  backgroundImage: `url(${map.splash})`,
-                  backgroundPosition: "left",
-                }}
-              >
-                {map.displayName}
-              </p>
-              <span className="modal-info-coordinates">
-                Coordinates: {map.coordinates}
-              </span>
-            </div>
-            <div className="modal-info-image-box">
-              {map.displayIcon ? (
-                <img
-                  className="modal-info-image-map"
-                  alt={`${map.displayName}`}
-                  srcSet={map.displayIcon}
-                />
-              ) : (
-                ""
-              )}
-            </div>
+        )}
+        {map.tacticalDescription && (
+          <div>
+            <dt>Layout</dt>
+            <dd>{map.tacticalDescription}</dd>
           </div>
-          <div className="close-icon-box">
-            <ModalCloseButton setClose={setClose} />
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+        )}
+      </dl>
+      {map.displayIcon ? (
+        <img
+          className="modal-minimap"
+          src={map.displayIcon}
+          alt={`${map.displayName} minimap`}
+        />
+      ) : (
+        <p className="modal-note">No minimap is available for this map.</p>
+      )}
+    </div>
+  </ModalShell>
+);
 
 export default MapModal;

@@ -1,15 +1,68 @@
-.sortAgentsButton {
-  color: var(--ligthgray-color) !important;
-  border: 2px solid var(--ligthgray-color) !important;
-  border-radius: 10px !important;
-  transition: 0.2s !important;
-  box-shadow: -1px 1px 1px var(--shadow-color)
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+
+  @media (max-width: 520px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
 }
 
-.sortAgentsButton:hover {
-  transform: scale(1) !important;
-  color: var(--gray-color) !important;
-  translate: 1px -1px;
-  box-shadow: -2px 2px 1px var(--ligthgray-color);
+.agent-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-bottom: 4px solid var(--ink);
+  transition: border-color 0.2s, transform 0.2s;
+
+  &:hover {
+    border-color: var(--red);
+    transform: translateY(-4px);
+  }
 }
 
+.agent-card-stage {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--stripes);
+}
+
+// The API portraits have a lot of empty space around the figure, so the
+// image is oversized and anchored to the top to frame head and torso.
+.agent-card-portrait {
+  position: absolute;
+  top: -6%;
+  left: 50%;
+  width: 190%;
+  max-width: none;
+  transform: translateX(-50%);
+  transition: transform 0.3s;
+
+  .agent-card:hover & {
+    transform: translateX(-50%) scale(1.04);
+  }
+}
+
+.agent-card-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 12px 14px;
+  color: var(--red);
+}
+
+.agent-card-name {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.agent-card-role {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 500;
+}

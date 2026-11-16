@@ -1,8 +1,11 @@
-import "../../scss/Modal.scss";
-import { ISkin } from "../../../interfaces/ISkin";
+import React, { useMemo, useState } from "react";
 import { IWeapon } from "../../../interfaces/IWeapon";
-import ModalCloseButton from "./components/ModalCloseButton";
-import React, { useEffect } from "react";
+import {
+  displayableSkins,
+  skinImage,
+  weaponCategory,
+} from "../../../utils/weapon";
+import ModalShell from "./components/ModalShell";
 
 interface WeaponProps {
   weapon: IWeapon;
@@ -10,108 +13,77 @@ interface WeaponProps {
 }
 
 const WeaponModal = ({ weapon, setClose }: WeaponProps) => {
-  const skinChecker = (skin: ISkin, weapon: IWeapon) => {
-    if (skin.displayName.split(" ")[0] === "Standard")
-      return weapon.displayIcon;
-
-    return skin.displayIcon
-      ? skin.displayIcon
-      : skin.levels[skin.levels.length - 1].displayIcon;
-  };
-
-  const categoriesChecker = (weapon: IWeapon) => {
-    const category = weapon.shopData.category;
-    const categoryText = weapon.shopData.categoryText;
-    return category === categoryText
-      ? category
-      : categoryText + ` (${category})`;
-  };
-
-  const eventHandler = () => {
-    setClose(false);
-  };
-  useEffect(() => {
-    const handleEsc = (event: any) => {
-      if (event.keyCode === 27) {
-        setClose(false);
-      }
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-    };
-  }, []);
+  const skins = useMemo(() => displayableSkins(weapon), [weapon]);
+  const [skinUuid, setSkinUuid] = useState<string | null>(null);
+  const skin = skins.find((item) => item.uuid === skinUuid);
+  const stats = weapon.weaponStats;
 
   return (
-    <>
-      <div className="modal-container" onClick={eventHandler}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-          <div className="modal-content-image-container">
-            <div
-              className="content-image"
-              style={{
-                boxShadow: "inset 1px 3px 30px 10px rgb(30 30 30 / 45%)",
-                padding: "20px 0",
-              }}
+    <ModalShell label={weapon.displayName} setClose={setClose}>
+      <div className="modal-media modal-media--striped">
+        <img
+          className="modal-media-weapon"
+          src={(skin && skinImage(skin, weapon)) || weapon.displayIcon}
+          alt={skin ? skin.displayName : weapon.displayName}
+        />
+        <p className="modal-media-caption">
+          {skin ? skin.displayName : `Standard ${weapon.displayName}`}
+        </p>
+      </div>
+      <div className="modal-info">
+        <h2 className="modal-title">{weapon.displayName}</h2>
+        <dl className="modal-facts">
+          <div>
+            <dt>Category</dt>
+            <dd>
+              {weapon.shopData
+                ? weapon.shopData.categoryText
+                : weaponCategory(weapon)}
+            </dd>
+          </div>
+          {weapon.shopData && (
+            <div>
+              <dt>Cost</dt>
+              <dd>{weapon.shopData.cost.toLocaleString("en-US")}</dd>
+            </div>
+          )}
+          {stats && (
+            <>
+              <div>
+                <dt>Fire rate</dt>
+                <dd>{stats.fireRate} rds/s</dd>
+              </div>
+              <div>
+                <dt>Magazine</dt>
+                <dd>{stats.magazineSize}</dd>
+              </div>
+              <div>
+                <dt>Reload</dt>
+                <dd>{stats.reloadTimeSeconds} s</dd>
+              </div>
+            </>
+          )}
+        </dl>
+        <h3 className="section-title">Skins ({skins.length})</h3>
+        <div className="modal-skins">
+          {skins.map((item) => (
+            <button
+              key={item.uuid}
+              className={`modal-skin${item === skin ? " is-active" : ""}`}
+              aria-pressed={item === skin}
+              onClick={() => setSkinUuid(item.uuid)}
             >
               <img
-                className="content-image-background"
-                src={`${weapon.displayIcon}?w=248&fit=crop&auto=format`}
-                srcSet={`${weapon.displayIcon}?w=248&fit=crop&auto=format&dpr=2 2x`}
-                alt={weapon.displayName}
-                style={{ width: "80%", height: "auto" }}
+                src={skinImage(item, weapon) || ""}
+                alt=""
+                loading="lazy"
               />
-            </div>
-          </div>
-          <div className="modal-container-info">
-            <div className="modal-info-box">
-              <p className="modal-info-name weapon-name">
-                {weapon.displayName}
-              </p>
-
-              <p className="agent-info-dev-name">
-                Category: {categoriesChecker(weapon)}
-              </p>
-            </div>
-            <div className="weapon-skins-list">
-              {weapon.skins.map(
-                (skin, index) =>
-                  skin.displayName.split(" ")[0] !== "Random" && (
-                    <>
-                      <div key={index} className="skins-container">
-                        <div className="skin-header">
-                          <h4 className="abilities-header-name">
-                            {skin.displayName}
-                          </h4>
-                          <span className="abilities-header-slot">
-                            Number of levels: {skin.levels.length}
-                          </span>
-                        </div>
-                        <div className="skin-image-container">
-                          <img
-                            style={{ width: "80%", maxHeight: "300px" }}
-                            src={`${skinChecker(
-                              skin,
-                              weapon
-                            )}?w=248&fit=crop&auto=format`}
-                            alt={skin.displayName}
-                          />
-                        </div>
-                      </div>
-                      {index < weapon.skins.length - 1 && (
-                        <div className="skin-list-item-breaker" />
-                      )}
-                    </>
-                  )
-              )}
-            </div>
-          </div>
-          <div className="close-icon-box">
-            <ModalCloseButton setClose={setClose} />
-          </div>
+              <span>{item.displayName}</span>
+            </button>
+          ))}
         </div>
       </div>
-    </>
+    </ModalShell>
   );
 };
 

@@ -1,50 +1,24 @@
-import React, { useState } from "react";
-import IconButton from "@mui/material/IconButton";
-import ArrowCircleUp from "@mui/icons-material/ArrowCircleUp";
+import React, { useEffect, useState } from "react";
 
 const ScrollUpButton = () => {
   const [visible, setVisible] = useState(false);
 
-  const toggleVisible = () => {
-    const scrolled = document.documentElement.scrollTop;
-    if (scrolled > 100) {
-      setVisible(true);
-    } else if (scrolled <= 100) {
-      setVisible(false);
-    }
-  };
+  useEffect(() => {
+    const toggleVisible = () => setVisible(window.scrollY > 400);
+    window.addEventListener("scroll", toggleVisible, { passive: true });
+    return () => window.removeEventListener("scroll", toggleVisible);
+  }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  window.addEventListener("scroll", toggleVisible);
+  if (!visible) return null;
 
   return (
-    <IconButton
-      color="primary"
-      aria-label="upload picture"
-      component="label"
-      onClick={(event: React.MouseEvent) => {
-        event.preventDefault();
-        scrollToTop();
-      }}
-      style={{
-        display: visible ? "inline" : "none",
-        position: "fixed",
-        zIndex: 5,
-        right: 20,
-        padding: 0,
-        opacity: 0.7,
-        bottom: 20,
-      }}
+    <button
+      className="scroll-up"
+      aria-label="Scroll to top"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
     >
-      <input hidden accept="image/*" type="file" />
-      <ArrowCircleUp sx={{ fontSize: 60 }} />
-    </IconButton>
+      ↑
+    </button>
   );
 };
 

@@ -14,6 +14,6 @@ export interface IAgent {
   killfeedPortrait: string;
   background: string;
   backgroundGradientColors: [string, string, string, string];
-  abilities: [IAbilities];
+  abilities: IAbilities[];
   role: IRole;
 }

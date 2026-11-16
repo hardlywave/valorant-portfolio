@@ -1,6 +1,14 @@
 import { IShopData } from "./IShopData";
 import { ISkin } from "./ISkin";
 
+export interface IWeaponStats {
+  fireRate: number;
+  magazineSize: number;
+  reloadTimeSeconds: number;
+  equipTimeSeconds: number;
+  wallPenetration: string | null;
+}
+
 export interface IWeapon {
   uuid: string;
   displayName: string;
@@ -8,6 +16,8 @@ export interface IWeapon {
   defaultSkinUuid: string;
   displayIcon: string;
   killStreamIcon: string;
-  shopData: IShopData;
-  skins: [ISkin];
+  // Both are null for the melee weapon.
+  shopData: IShopData | null;
+  weaponStats: IWeaponStats | null;
+  skins: ISkin[];
 }

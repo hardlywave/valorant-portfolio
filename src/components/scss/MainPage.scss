@@ -1,0 +1,283 @@
+// ---------- hero ----------
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 32px) 32px 72px;
+  overflow: hidden;
+  color: #fff;
+  // Shown while the video loads, and for good if it fails.
+  background: var(--stripes), #14181c;
+
+  // Keeps the headline and the navigation readable over any frame.
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(15, 18, 22, 0.6),
+        transparent 28%
+      ),
+      linear-gradient(to top right, rgba(15, 18, 22, 0.88), transparent 68%);
+  }
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+.hero-kicker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+
+  &::before {
+    content: "";
+    width: 36px;
+    height: 3px;
+    background: var(--red);
+  }
+}
+
+.hero-title {
+  margin-top: 16px;
+  color: var(--red);
+  font-size: clamp(56px, 11vw, 136px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+}
+
+.hero-text {
+  margin-top: 20px;
+  max-width: 44ch;
+  font-size: 17px;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.hero-hatch {
+  position: absolute;
+  z-index: 1;
+  right: 32px;
+  bottom: 72px;
+}
+
+// ---------- featured agent ----------
+
+.spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  gap: 48px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.spotlight-stage {
+  position: relative;
+  min-height: 640px;
+  overflow: hidden;
+  background: var(--stripes);
+}
+
+.spotlight-portrait {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  height: 135%;
+  max-width: none;
+  transform: translateX(-50%);
+  filter: drop-shadow(0 18px 24px rgba(27, 31, 35, 0.25));
+  animation: spotlight-in 0.4s ease-out;
+}
+
+.spotlight-info {
+  align-self: center;
+  padding: 56px 0;
+}
+
+.spotlight-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 20px;
+  color: var(--red);
+
+  h2 {
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 800;
+    line-height: 0.95;
+    text-transform: uppercase;
+    overflow-wrap: anywhere;
+  }
+}
+
+.spotlight-role {
+  margin-top: 6px;
+  color: var(--red);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.spotlight-text {
+  margin: 20px 0 28px;
+  max-width: 56ch;
+}
+
+.roster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 36px;
+}
+
+.roster-item {
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--panel);
+  outline: 3px solid transparent;
+  outline-offset: -3px;
+  transition: outline-color 0.15s, transform 0.15s;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  &.is-active {
+    outline-color: var(--red);
+  }
+
+  &:focus-visible {
+    outline-color: var(--ink);
+  }
+}
+
+// ---------- maps / weapons tiles ----------
+
+.explore {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 72px 32px;
+}
+
+.explore-tile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px;
+  background: var(--panel);
+  border-bottom: 4px solid var(--ink);
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: var(--red);
+    border-color: var(--red);
+    color: #fff;
+
+    .explore-label {
+      color: #fff;
+    }
+
+    .explore-arrow {
+      transform: translateX(6px);
+    }
+  }
+}
+
+.explore-label {
+  color: var(--red);
+  font-size: clamp(36px, 5vw, 60px);
+  font-weight: 800;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.explore-text {
+  max-width: 36ch;
+}
+
+.explore-arrow {
+  margin-top: 12px;
+  font-size: 24px;
+  font-weight: 700;
+  transition: transform 0.2s;
+}
+
+@keyframes spotlight-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(16px);
+  }
+}
+
+@media (max-width: 900px) {
+  .spotlight {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0;
+  }
+
+  .spotlight-stage {
+    min-height: 460px;
+  }
+
+  .spotlight-info {
+    padding: 32px 0 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    padding: calc(var(--header-height) + 24px) 16px 48px;
+  }
+
+  .hero-hatch {
+    display: none;
+  }
+
+  .spotlight {
+    padding: 0 16px;
+  }
+
+  .explore {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 48px 16px;
+  }
+}

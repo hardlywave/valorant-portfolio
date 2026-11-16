@@ -1,33 +1,32 @@
 import React from "react";
-import { useMediaQuery } from "react-responsive";
+import "../components/scss/Catalog.scss";
 
 import useMaps from "../requests/getMaps";
 import Maps from "../components/tsx/Maps";
 import Loader from "../components/tsx/mainComponents/Loader";
-
-import ImageList from "@mui/material/ImageList";
+import LoadError from "../components/tsx/mainComponents/LoadError";
 
 const MapsPage = () => {
-  const { loading, maps } = useMaps();
-
-  const isSmallWindow = useMediaQuery({ query: `(max-width: 450px)` });
-  const isMediumWindow = useMediaQuery({ query: `(max-width: 800px)` });
-
-  const windowSize = () => (isSmallWindow ? 1 : isMediumWindow ? 2 : 3);
+  const { loading, error, maps } = useMaps();
 
   return (
-    <>
-      {loading && <Loader loading={loading} />}
-      <ImageList
-        cols={windowSize()}
-        style={{ overflowY: "auto", padding: "0 15px" }}
-        gap={15}
-      >
-        {maps.map((map, index) => (
-          <Maps key={index} map={map} />
+    <main className="page">
+      <div className="page-head">
+        <div>
+          <h1 className="page-title">Maps</h1>
+          <p className="page-subtitle">
+            Select a map to see its coordinates and minimap.
+          </p>
+        </div>
+      </div>
+      <Loader loading={loading} />
+      {error && <LoadError />}
+      <div className="catalog-grid">
+        {maps.map((map) => (
+          <Maps key={map.uuid} map={map} />
         ))}
-      </ImageList>
-    </>
+      </div>
+    </main>
   );
 };
 
